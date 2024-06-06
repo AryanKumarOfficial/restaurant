@@ -168,3 +168,16 @@ window.addEventListener("mousemove", function (event) {
   }
 
 });
+
+
+const reservationForm = document.querySelector("#reservation-form")
+reservationForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log(e.target.elements.name.value);
+  console.log(e.target.elements.phone.value);
+  console.log(e.target.elements.person.value);
+  console.log(e.target.elements.reservationDate.value);
+  console.log(e.target.elements.time.value);
+  reservationForm.reset();
+  alert("Your Table booked successfully")
+})
