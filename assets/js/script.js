@@ -8,8 +8,8 @@
  * loading will be end after document is loaded
  */
 
-const preloader = document.querySelector("[data-preaload]");
 
+const preloader = document.querySelector("[data-preaload]");
 window.addEventListener("load", function () {
   preloader.classList.add("loaded");
   document.body.classList.add("loaded");
@@ -170,7 +170,9 @@ window.addEventListener("mousemove", function (event) {
 });
 
 
-const reservationForm = document.querySelector("#reservation-form")
+const reservationForm = document.querySelector("#reservation-form");
+const successMessage = document.getElementById('success');
+const closeBtn = document.querySelector('.close');
 reservationForm.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log(e.target.elements.name.value);
@@ -179,5 +181,25 @@ reservationForm.addEventListener("submit", (e) => {
   console.log(e.target.elements.reservationDate.value);
   console.log(e.target.elements.time.value);
   reservationForm.reset();
-  alert("Your Table booked successfully")
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top",
+    showConfirmButton: false,
+    timer: 3000,
+    iconColor:"green",
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  })
+
+  Toast.fire({
+    icon: "success",
+    title: `<b style="font-size: large;">Table Booked!</b>`
+  })
+
 })
+
+
+
